@@ -28,6 +28,16 @@ make default # to build the library
 make apps # to build the examples
 ```
 
+### How to Run with Docker ###
+
+```bash
+# build
+docker build -f ./dockerfiles/ubuntu2004.dockerfile -t 3d_line_detection .
+
+# run
+docker run -it --rm --net host -e DISPLAY=$DISPLAY -v $HOME/.Xauthority:/root/.Xauthority -v `pwd`:/workspace 3d_line_detection
+```
+
 ## :running: How to Run ##
 ***
 
