@@ -80,13 +80,17 @@ int HoughTransform<POINT_CLOUD_TYPE>::getLine(pcl::ModelCoefficients& coeffs, co
 
 template <typename POINT_CLOUD_TYPE>
 typename HoughTransform<POINT_CLOUD_TYPE>::LineSegment3Ds
-HoughTransform<POINT_CLOUD_TYPE>::run(const PointCloudPtr& cloud)
+HoughTransform<POINT_CLOUD_TYPE>::run(const PointCloudPtr& cloud, float maxNorm)
 {
     PointCloudType minBound;
     PointCloudType maxBound;
 
     pcl::getMinMax3D(*cloud, minBound, maxBound);
-    float maxNorm = std::max<float>(this->calcNorm(minBound), this->calcNorm(maxBound));
+
+    if (maxNorm == 0) {
+        maxNorm = std::max<float>(this->calcNorm(minBound), this->calcNorm(maxBound));
+    }
+
     float range = 2 * maxNorm;
     float minRange = -maxNorm;
     float deltaRange = range / m_param.numRangeBin;

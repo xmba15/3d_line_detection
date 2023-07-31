@@ -36,7 +36,7 @@ template <typename POINT_CLOUD_TYPE> class HoughTransform
 
     explicit HoughTransform(const Param& param);
 
-    LineSegment3Ds run(const PointCloudPtr& cloud);
+    LineSegment3Ds run(const PointCloudPtr& cloud, float maxNorm = 0);
 
  private:
     int getLine(pcl::ModelCoefficients& coeffs, const float minRange, const float deltaRange,
