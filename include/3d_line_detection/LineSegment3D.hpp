@@ -60,7 +60,7 @@ template <typename POINT_CLOUD_TYPE> class LineSegment3D
     }
 
  private:
-    const PointCloudPtr& m_cloud;
+    const PointCloudPtr m_cloud;
     pcl::ModelCoefficients m_coeffs;
     std::vector<int> m_inlierIndices;
 };
